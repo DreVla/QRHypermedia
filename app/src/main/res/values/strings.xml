@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QRCodeScanner</string>
+    <string name="playground">P L A Y G R O U N D</string>
+    <string name="title_social">SOCIAL</string>
+    <string name="title_sports">SPORTS</string>
+    <string name="title_club">CLUB</string>
+    <string name="scan_code_button_text">Scan code</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="profile_found">Profile found</string>
+</resources>
