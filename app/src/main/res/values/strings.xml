@@ -7,4 +7,9 @@
     <string name="scan_code_button_text">Scan code</string>
     <string name="dashboard_title">Dashboard</string>
     <string name="profile_found">Profile found</string>
+    <string name="profileimage">ProfileImage</string>
+    <string name="membership">Membership</string>
+    <string name="status">Status</string>
+    <string name="test_date">22/10/2018</string>
+    <string name="dashboard_profile_title">User Profile</string>
 </resources>

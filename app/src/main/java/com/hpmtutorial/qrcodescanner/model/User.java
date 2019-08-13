@@ -6,19 +6,19 @@ public class User {
 
     @SerializedName("firstName")
     @Expose
-    private Object firstName;
+    private String firstName;
     @SerializedName("id")
     @Expose
-    private Object id;
+    private long id;
     @SerializedName("email")
     @Expose
-    private Object email;
+    private String email;
     @SerializedName("photoUrl")
     @Expose
-    private Object photoUrl;
+    private String photoUrl;
     @SerializedName("lastName")
     @Expose
-    private Object lastName;
+    private String lastName;
     @SerializedName("membership")
     @Expose
     private Membership membership;
@@ -39,8 +39,7 @@ public class User {
      * @param photoUrl
      * @param firstName
      */
-    public User(Object firstName, Object id, Object email, Object photoUrl, Object lastName, Membership membership) {
-        super();
+    public User(String firstName, long id, String email, String photoUrl, String lastName, Membership membership) {
         this.firstName = firstName;
         this.id = id;
         this.email = email;
@@ -49,43 +48,43 @@ public class User {
         this.membership = membership;
     }
 
-    public Object getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(Object firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public Object getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Object getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(Object photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
-    public Object getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(Object lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -96,5 +95,4 @@ public class User {
     public void setMembership(Membership membership) {
         this.membership = membership;
     }
-
 }

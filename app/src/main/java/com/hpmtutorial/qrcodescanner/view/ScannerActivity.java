@@ -50,31 +50,39 @@ public class ScannerActivity extends AppCompatActivity  implements ZXingScannerV
     @Override
     public void handleResult(final Result rawResult) {
 
-        final String result = rawResult.getText();
-        Log.d("QRCodeScanner", rawResult.getText());
-        Log.d("QRCodeScanner", rawResult.getBarcodeFormat().toString());
+//        Variant without dialog
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("View Profile", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-                profileIntent.putExtra("user_id", rawResult.getText());
-                startActivity(profileIntent);
-            }
-        });
-        builder.setNeutralButton("Scan Again", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               mScannerView.resumeCameraPreview(ScannerActivity.this);
-            }
-        });
-        builder.setMessage(R.string.profile_found);
-        builder.setCancelable(false);
-        AlertDialog alert1 = builder.create();
-        alert1.setCanceledOnTouchOutside(false);
-        alert1.show();
+        Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+        profileIntent.putExtra("user_id", rawResult.getText());
+        startActivity(profileIntent);
+
+//        Variant with dialog
+//
+//        final String result = rawResult.getText();
+//        Log.d("QRCodeScanner", rawResult.getText());
+//        Log.d("QRCodeScanner", rawResult.getBarcodeFormat().toString());
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Scan Result");
+//        builder.setPositiveButton("View Profile", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+//                profileIntent.putExtra("user_id", rawResult.getText());
+//                startActivity(profileIntent);
+//            }
+//        });
+//        builder.setNeutralButton("Scan Again", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//               mScannerView.resumeCameraPreview(ScannerActivity.this);
+//            }
+//        });
+//        builder.setMessage(R.string.profile_found);
+//        builder.setCancelable(false);
+//        AlertDialog alert1 = builder.create();
+//        alert1.setCanceledOnTouchOutside(false);
+//        alert1.show();
     }
 
     private boolean checkPermission() {

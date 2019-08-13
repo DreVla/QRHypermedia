@@ -3,48 +3,52 @@ package com.hpmtutorial.qrcodescanner.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class Membership {
 
     @SerializedName("id")
     @Expose
-    private Object id;
+    private long id;
     @SerializedName("name")
     @Expose
-    private Object name;
+    private String name;
     @SerializedName("startDate")
     @Expose
-    private Object startDate;
+    private String startDate;
     @SerializedName("endDate")
     @Expose
-    private Object endDate;
+    private String endDate;
     @SerializedName("status")
     @Expose
-    private Object status;
+    private String status;
     @SerializedName("price")
     @Expose
-    private Object price;
+    private double price;
     @SerializedName("currency")
     @Expose
-    private Object currency;
+    private String currency;
     @SerializedName("nextBilling")
     @Expose
-    private Object nextBilling;
+    private String nextBilling;
     @SerializedName("entries")
     @Expose
-    private Object entries;
+    private int entries;
     @SerializedName("photoUrl")
     @Expose
-    private Object photoUrl;
+    private String photoUrl;
+
+    private long daysLeft;
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public Membership() {
     }
 
     /**
-     *
      * @param id
      * @param startDate
      * @param price
@@ -56,8 +60,7 @@ public class Membership {
      * @param photoUrl
      * @param currency
      */
-    public Membership(Object id, Object name, Object startDate, Object endDate, Object status, Object price, Object currency, Object nextBilling, Object entries, Object photoUrl) {
-        super();
+    public Membership(long id, String name, String startDate, String endDate, String status, double price, String currency, String nextBilling, int entries, String photoUrl) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -70,84 +73,96 @@ public class Membership {
         this.photoUrl = photoUrl;
     }
 
-    public Object getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Object getStartDate() {
-        return startDate;
+    public String getStartDate() {
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(Long.parseLong(startDate)*1000);
+        return sf.format(date);
     }
 
-    public void setStartDate(Object startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Object getEndDate() {
-        return endDate;
+    public String getEndDate() {
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(Long.parseLong(endDate)*1000);
+        return sf.format(date);
     }
 
-    public void setEndDate(Object endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public Object getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Object getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Object price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Object getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Object currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 
-    public Object getNextBilling() {
-        return nextBilling;
+    public String getNextBilling() {
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(Long.parseLong(nextBilling)*1000);
+        return sf.format(date);
     }
 
-    public void setNextBilling(Object nextBilling) {
+    public void setNextBilling(String nextBilling) {
         this.nextBilling = nextBilling;
     }
 
-    public Object getEntries() {
+    public int getEntries() {
         return entries;
     }
 
-    public void setEntries(Object entries) {
+    public void setEntries(int entries) {
         this.entries = entries;
     }
 
-    public Object getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(Object photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public long getDaysLeft(){
+        long diffInMillies = Math.abs(Long.parseLong(endDate) - Long.parseLong(startDate));
+        this.daysLeft = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return daysLeft;
     }
 
 }

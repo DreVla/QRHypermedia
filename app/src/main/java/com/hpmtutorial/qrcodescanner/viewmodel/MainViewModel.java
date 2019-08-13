@@ -9,11 +9,10 @@ public class MainViewModel extends ViewModel {
         LOADING,
         CAMERA,
         FAIL,
+        BACK,
         DONE
     }
     public MutableLiveData<UIChanger> uiChangerMutableLiveData = new MutableLiveData<>();
-
-
 
     public void onScanClick(){
         uiChangerMutableLiveData.setValue(UIChanger.CAMERA);
