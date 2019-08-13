@@ -93,7 +93,10 @@ public class ProfileActivity extends AppCompatActivity {
         profileViewModel.photoUrl.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Picasso.get().load(s).into(profilePhoto);
+                Picasso.get()
+                        .load(s)
+                        .placeholder(R.drawable.ic_person_black_24dp)
+                        .into(profilePhoto);
             }
         });
     }
