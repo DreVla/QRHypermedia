@@ -2,6 +2,8 @@ package com.hpmtutorial.qrcodescanner.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.dashboard_title);
 
         observeUI();
+        if (isTablet()) {
+            // stop screen rotation on phones because <explain>
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
     }
 
     private void observeUI() {
@@ -54,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isTablet() {
+        return (this.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
 

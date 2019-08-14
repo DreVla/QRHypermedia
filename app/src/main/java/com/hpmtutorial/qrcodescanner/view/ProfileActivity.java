@@ -2,6 +2,8 @@
 package com.hpmtutorial.qrcodescanner.view;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -44,6 +46,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        if (isTablet()) {
+            // stop screen rotation on phones because <explain>
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
@@ -161,5 +168,11 @@ public class ProfileActivity extends AppCompatActivity {
         outAnimation.setDuration(200);
         loadingOverlay.setAnimation(outAnimation);
         loadingOverlay.setVisibility(View.GONE);
+    }
+
+    private boolean isTablet() {
+        return (this.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }
