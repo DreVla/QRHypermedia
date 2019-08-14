@@ -26,11 +26,18 @@ public class ProfileViewModel extends ViewModel {
         GREEN,
         RED
     }
+
+    public enum buttonStatus{
+        CONFIRM,
+        CANCEL
+    }
+
     private UsersAPI usersAPI;
     public MutableLiveData<MainViewModel.UIChanger> uiChangerMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<User> userProfile = new MutableLiveData<>();
     public MutableLiveData<String> photoUrl = new MutableLiveData<>();
     public MutableLiveData<statusValidate> statusColor = new MutableLiveData<>();
+    public MutableLiveData<buttonStatus> buttonChange = new MutableLiveData<>();
     public User user = new User();
 
     public void sendGet(final String user_id){
@@ -70,5 +77,17 @@ public class ProfileViewModel extends ViewModel {
                 Log.d("Fail", "onFailure: Something wrong");
             }
         });
+    }
+
+    public void onConfirmClick(){
+        buttonChange.setValue(buttonStatus.CONFIRM);
+    }
+
+    public void onCancelClick(){
+        buttonChange.setValue(buttonStatus.CANCEL);
+    }
+
+    public void scanAgain(){
+        uiChangerMutableLiveData.setValue(MainViewModel.UIChanger.BACK);
     }
 }

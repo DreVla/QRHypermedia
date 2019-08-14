@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="profileViewModel"
             type="com.hpmtutorial.qrcodescanner.viewmodel.ProfileViewModel" />
+
         <variable
             name="user"
             type="com.hpmtutorial.qrcodescanner.model.User" />
@@ -20,17 +22,19 @@
             android:id="@+id/profile_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            tools:visibility="visible">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/container_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="visible">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_portrait_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +49,7 @@
                         android:contentDescription="@string/profileimage"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/avataaars"/>
+                        tools:src="@drawable/ic_launcher_background" />
 
                     <TextView
                         android:id="@+id/profile_view_membership_type"
@@ -94,7 +98,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_below="@id/constraint_portrait_1">
 
                     <TextView
                         android:id="@+id/textView5"
@@ -185,8 +190,7 @@
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5"
-                        />
+                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                     <TextView
                         android:id="@+id/profile_view_start_date"
@@ -194,8 +198,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="20dp"
-                        android:textColor="@android:color/black"
                         android:text="@{String.valueOf(user.membership.startDate)}"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/profile_view_membership_status"
@@ -207,9 +211,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="20dp"
+                        android:text="@{String.valueOf(user.membership.endDate)}"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:text="@{String.valueOf(user.membership.endDate)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/profile_view_start_date"
                         tools:text="@string/test_date" />
@@ -220,9 +224,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="20dp"
+                        android:text="@{String.valueOf(user.membership.daysLeft)}"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:text="@{String.valueOf(user.membership.daysLeft)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/profile_view_end_date"
                         tools:text="23" />
@@ -233,9 +237,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="20dp"
+                        android:text="@{String.valueOf(user.membership.entries)}"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:text="@{String.valueOf(user.membership.entries)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/profile_view_days"
                         tools:text="11" />
@@ -246,9 +250,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="20dp"
+                        android:text="@{String.valueOf(user.membership.nextBilling)}"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:text="@{String.valueOf(user.membership.nextBilling)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/profile_view_entries"
                         tools:text="@string/test_date" />
@@ -256,7 +260,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </LinearLayout>
+            </RelativeLayout>
         </ScrollView>
 
 

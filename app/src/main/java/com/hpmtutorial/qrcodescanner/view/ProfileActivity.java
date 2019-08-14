@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hpmtutorial.qrcodescanner.R;
 import com.hpmtutorial.qrcodescanner.databinding.ActivityProfileBinding;
 import com.hpmtutorial.qrcodescanner.model.User;
@@ -31,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ProfileViewModel profileViewModel;
     private ImageView profilePhoto;
     private TextView status;
-    private ScrollView profileScrollView;
+    private RelativeLayout container;
 
     private AlphaAnimation inAnimation;
     private AlphaAnimation outAnimation;
@@ -52,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         status = findViewById(R.id.profile_view_membership_status);
         profilePhoto = findViewById(R.id.profile_view_profile_image);
-        profileScrollView = findViewById(R.id.profile_scroll_view);
+        container = findViewById(R.id.container_layout);
         loadingOverlay = findViewById(R.id.overlay_loading_view);
         String idReceived = getIntent().getStringExtra("user_id");
         profileViewModel.sendGet(idReceived);
@@ -61,6 +65,24 @@ public class ProfileActivity extends AppCompatActivity {
         observeProfile();
         observeUIChange();
         observeStatus();
+        observeButtons();
+    }
+
+    private void observeButtons() {
+        profileViewModel.buttonChange.observe(this, new Observer<ProfileViewModel.buttonStatus>() {
+            @Override
+            public void onChanged(ProfileViewModel.buttonStatus buttonStatus) {
+                switch (buttonStatus){
+                    case CONFIRM:
+                        Toast.makeText(ProfileActivity.this, "CONFIRM CLICKED", Toast.LENGTH_SHORT).show();
+                        break;
+                    case CANCEL:
+                        Toast.makeText(ProfileActivity.this, "CANCEL CLICKED", Toast.LENGTH_SHORT).show();
+                        break;
+                        default:
+                }
+            }
+        });
     }
 
     private void observeStatus() {
@@ -111,11 +133,14 @@ public class ProfileActivity extends AppCompatActivity {
                         break;
                     case DONE:
                         endAnimation();
-                        profileScrollView.setVisibility(View.VISIBLE);
+                        container.setVisibility(View.VISIBLE);
                         break;
                     case FAIL:
                         endAnimation();
                         break;
+                    case BACK:
+                        Intent scannerActivity = new Intent(getApplicationContext(),ScannerActivity.class);
+                        startActivity(scannerActivity);
                     default:
 
                 }
