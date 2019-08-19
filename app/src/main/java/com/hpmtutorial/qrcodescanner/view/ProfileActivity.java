@@ -1,13 +1,16 @@
 
 package com.hpmtutorial.qrcodescanner.view;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -42,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
     private AlphaAnimation inAnimation;
     private AlphaAnimation outAnimation;
     private FrameLayout loadingOverlay;
+
+    private boolean paid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
         if (isTablet()) {
             // stop screen rotation on phones because <explain>
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else{
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
@@ -98,10 +105,12 @@ public class ProfileActivity extends AppCompatActivity {
             public void onChanged(ProfileViewModel.statusValidate statusValidate) {
                 switch (statusValidate){
                     case RED:
-                        status.setTextColor(Color.RED);
+                        status.setTextColor(getResources().getColor(R.color.bad_red));
+                        paid = false;
                         break;
                     case GREEN:
-                        status.setTextColor(Color.GREEN);
+                        status.setTextColor(getResources().getColor(R.color.good_green));
+                        paid = true;
                         break;
                         default:
                 }
@@ -141,6 +150,17 @@ public class ProfileActivity extends AppCompatActivity {
                     case DONE:
                         endAnimation();
                         container.setVisibility(View.VISIBLE);
+                        if(paid) {
+                            Dialog settingsDialog = new Dialog(ProfileActivity.this);
+                            settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.valid_popup_layout, null));
+                            settingsDialog.show();
+                        }else {
+                            Dialog settingsDialog = new Dialog(ProfileActivity.this);
+                            settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.invalid_popup_layout, null));
+                            settingsDialog.show();
+                        }
                         break;
                     case FAIL:
                         endAnimation();

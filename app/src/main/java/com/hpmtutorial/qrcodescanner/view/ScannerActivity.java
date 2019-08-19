@@ -37,6 +37,8 @@ public class ScannerActivity extends AppCompatActivity  implements ZXingScannerV
         if (isTablet()) {
             // stop screen rotation on phones because <explain>
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }else{
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

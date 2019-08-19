@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#000000</color>
     <color name="calmGrey">#363636</color>
+    <color name="good_green">#00AF51</color>
+    <color name="bad_red">#E01343</color>
 </resources>

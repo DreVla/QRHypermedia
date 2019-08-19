@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         if (isTablet()) {
             // stop screen rotation on phones because <explain>
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }else{
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
 

@@ -33,7 +33,7 @@
                     <ImageView
                         android:id="@+id/profile_view_profile_image"
                         android:layout_width="156dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="156dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="36dp"
                         android:contentDescription="@string/profileimage"
