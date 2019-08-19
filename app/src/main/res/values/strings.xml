@@ -13,4 +13,5 @@
     <string name="test_date">22/10/2018</string>
     <string name="dashboard_profile_title">User Profile</string>
     <string name="scan_again">Scan code again</string>
+    <string name="image_protrait">https://svgur.com/s/EcH</string>
 </resources>

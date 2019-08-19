@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +14,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.hpmtutorial.qrcodescanner.R;
 import com.hpmtutorial.qrcodescanner.databinding.ActivityMainBinding;
 import com.hpmtutorial.qrcodescanner.viewmodel.MainViewModel;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private MainViewModel mainViewModel;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

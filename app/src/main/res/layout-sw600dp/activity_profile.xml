@@ -252,52 +252,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/button_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/constraint_1"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="48dp"
-                tools:layout_editor_absoluteX="48dp"
-                tools:layout_editor_absoluteY="239dp">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="124dp"
-                    android:layout_height="124dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="@{()->profileViewModel.onConfirmClick()}"
-                    android:src="@drawable/ic_check_circle_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="124dp"
-                    android:layout_height="124dp"
-                    android:layout_marginStart="64dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="@{()->profileViewModel.onCancelClick()}"
-                    android:src="@drawable/ic_cancel_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <Button
                 android:layout_width="250dp"
                 android:layout_height="40dp"

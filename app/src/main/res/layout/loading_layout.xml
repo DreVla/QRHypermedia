@@ -11,11 +11,17 @@
     android:focusable="true"
     android:visibility="gone">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!--<ProgressBar-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:indeterminateDrawable="@drawable/progress"/>-->
+
+    <pl.droidsonroids.gif.GifImageView
         android:layout_gravity="center"
-        android:indeterminateDrawable="@drawable/progress"/>
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/animat_search_color"/>
 
 </FrameLayout>
 
