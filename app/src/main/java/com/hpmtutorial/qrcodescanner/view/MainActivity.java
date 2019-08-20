@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (uiChanger){
                     case CAMERA:
                         Intent scannerIntent = new Intent(getApplicationContext(), ScannerActivity.class);
-                        startActivity(scannerIntent);
+                        startActivityForResult(scannerIntent,1);
                         break;
                     case LOADING:
 
@@ -66,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case RESULT_CANCELED:
+
+                break;
+            case RESULT_OK:
+                startActivity(data);
+                break;
+                default:
+        }
     }
 
     private boolean isTablet() {

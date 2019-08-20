@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -80,6 +81,15 @@ public class ProfileActivity extends AppCompatActivity {
         observeUIChange();
         observeStatus();
         observeButtons();
+
+//        finish activity after 10 seconds
+        int finishTime = 10; //10 secs
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                finish();
+            }
+        }, finishTime * 1000);
     }
 
     private void observeButtons() {
@@ -166,8 +176,7 @@ public class ProfileActivity extends AppCompatActivity {
                         endAnimation();
                         break;
                     case BACK:
-                        Intent scannerActivity = new Intent(getApplicationContext(),ScannerActivity.class);
-                        startActivity(scannerActivity);
+                        finish();
                     default:
 
                 }
@@ -194,5 +203,13 @@ public class ProfileActivity extends AppCompatActivity {
         return (this.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(mainActivity);
+        finish();
     }
 }

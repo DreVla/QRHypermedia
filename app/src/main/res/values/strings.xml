@@ -6,7 +6,7 @@
     <string name="title_club">CLUB</string>
     <string name="scan_code_button_text">Scan code</string>
     <string name="dashboard_title">Dashboard</string>
-    <string name="profile_found">Profile found</string>
+    <string name="something_wrong">Something went wrong</string>
     <string name="profileimage">ProfileImage</string>
     <string name="membership">Membership</string>
     <string name="status">Status</string>

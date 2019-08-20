@@ -60,10 +60,28 @@ public class ScannerActivity extends AppCompatActivity  implements ZXingScannerV
     public void handleResult(final Result rawResult) {
 
 //        Variant without dialog
+        String result = rawResult.getText();
+        if(result.length()==3) {
 
-        Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-        profileIntent.putExtra("user_id", rawResult.getText());
-        startActivity(profileIntent);
+            Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+            profileIntent.putExtra("user_id", rawResult.getText());
+            setResult(RESULT_OK,profileIntent);
+            finish();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Code not found");
+        builder.setNegativeButton("Scan Again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               mScannerView.resumeCameraPreview(ScannerActivity.this);
+            }
+        });
+        builder.setMessage(R.string.something_wrong);
+        builder.setCancelable(false);
+        AlertDialog alert1 = builder.create();
+        alert1.setCanceledOnTouchOutside(false);
+        alert1.show();
+        }
 
 //        Variant with dialog
 //
@@ -169,5 +187,12 @@ public class ScannerActivity extends AppCompatActivity  implements ZXingScannerV
         return (this.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }
